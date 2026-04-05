@@ -27,6 +27,7 @@ pub struct MojangUuidResponse {
 
 #[derive(Deserialize)]
 pub struct MojangSessionResponse {
+    #[allow(dead_code)]
     pub id: String,
     pub name: String,
     pub properties: Vec<ProfileProperty>,

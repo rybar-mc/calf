@@ -1,0 +1,42 @@
+name: Check
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: install rust
+        uses: ./.github/actions/install-rust
+
+      - name: check
+        shell: bash
+        run: cargo check --all
+
+      - name: fmt
+        shell: bash
+        run: cargo fmt --all -- --check
+
+      - name: clippy
+        shell: bash
+        run: cargo clippy --all -- -D warnings
+
+  compile:
+    name: compile ubuntu-latest
+    runs-on: ubuntu-latest
+    needs: check
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: install rust
+        uses: ./.github/actions/install-rust
+
+      - name: build binary
+        run: cargo build --verbose --locked --release

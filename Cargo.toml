@@ -1,0 +1,14 @@
+[package]
+name = "calf"
+version = "0.1.0"
+edition = "2021"
+authors = ["Jozef Steinhübl <contact@xhyrom.dev>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+base64 = "0.22.1"
+serde = "1.0.228"
+worker = { version = "0.7" }
+worker-macros = { version = "0.7" }

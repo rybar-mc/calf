@@ -3,15 +3,17 @@ use utoipa::ToSchema;
 
 #[derive(Serialize, ToSchema)]
 pub struct CalfResponse {
-    pub uuid: String,
-    pub username: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub uuid: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub username: Option<String>,
     pub textures: TextureData,
 }
 
 #[derive(Serialize, ToSchema)]
 pub struct TextureData {
     pub value: String,
-    pub signature: Option<String>,
+    pub signature: String,
 }
 
 #[derive(Serialize, ToSchema)]
@@ -37,5 +39,5 @@ pub struct MojangSessionResponse {
 pub struct ProfileProperty {
     pub name: String,
     pub value: String,
-    pub signature: Option<String>,
+    pub signature: String,
 }

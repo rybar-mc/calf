@@ -42,6 +42,7 @@ name = "calf"
 version = "0.1.0"
 dependencies = [
  "base64",
+ "bytes",
  "serde",
  "utoipa",
  "worker",

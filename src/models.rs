@@ -1,19 +1,20 @@
 use serde::{Deserialize, Serialize};
+use utoipa::ToSchema;
 
-#[derive(Serialize)]
+#[derive(Serialize, ToSchema)]
 pub struct CalfResponse {
     pub uuid: String,
     pub username: String,
     pub textures: TextureData,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, ToSchema)]
 pub struct TextureData {
     pub value: String,
     pub signature: Option<String>,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, ToSchema)]
 pub struct ErrorResponse {
     pub error: String,
     pub status: u16,
@@ -26,6 +27,7 @@ pub struct MojangUuidResponse {
 
 #[derive(Deserialize)]
 pub struct MojangSessionResponse {
+    #[allow(dead_code)]
     pub id: String,
     pub name: String,
     pub properties: Vec<ProfileProperty>,

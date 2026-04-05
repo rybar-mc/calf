@@ -2,5 +2,8 @@ name = "calf"
 main = "build/index.js"
 compatibility_date = "2026-04-05"
 
+[assets]
+directory = "./public"
+
 [build]
-command = "cargo install -q \"worker-build@^0.7\" && worker-build --release"
+command = "cargo install -q \"worker-build@^0.7\" && worker-build --release && cargo run -p openapi"

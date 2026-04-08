@@ -41,3 +41,21 @@ pub struct ProfileProperty {
     pub value: String,
     pub signature: String,
 }
+
+#[derive(Deserialize)]
+pub struct TexturesDecoded {
+    pub textures: TexturesMap,
+}
+
+#[derive(Deserialize)]
+pub struct TexturesMap {
+    #[serde(rename = "SKIN")]
+    pub skin: Option<SkinInfo>,
+    #[serde(rename = "CAPE")]
+    pub cape: Option<SkinInfo>,
+}
+
+#[derive(Deserialize)]
+pub struct SkinInfo {
+    pub url: String,
+}

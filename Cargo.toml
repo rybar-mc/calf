@@ -11,9 +11,11 @@ crate-type = ["cdylib", "rlib"]
 base64 = "0.22.1"
 bytes = "1.11.1"
 serde = "1.0.228"
+serde_json = "1.0"
 utoipa = { version = "5.4.0", features = ["openapi_extensions"] }
 worker = { version = "0.7" }
 worker-macros = { version = "0.7" }
+image = { version = "0.25.10", default-features = false, features = ["png"] }
 
 [workspace]
 members = ["openapi"]

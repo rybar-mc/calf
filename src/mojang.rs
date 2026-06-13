@@ -15,10 +15,15 @@ pub async fn fetch_mojang_uuid(username: &str) -> Result<std::result::Result<Str
         return Ok(Err(json_error("player not found", 404)?));
     }
 
-    match res.json::<MojangUuidResponse>().await {
+    let body = res
+        .text()
+        .await
+        .unwrap_or_else(|_| "<unreadable>".to_string());
+
+    match serde_json::from_str::<MojangUuidResponse>(&body) {
         Ok(data) => Ok(Ok(data.id)),
         Err(_) => Ok(Err(json_error(
-            "failed to parse mojang uuid response",
+            &format!("mojang api returned unexpected response: {body}"),
             502,
         )?)),
     }
